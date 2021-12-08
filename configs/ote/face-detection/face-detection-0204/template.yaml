@@ -24,8 +24,9 @@ hyper_parameters:
     learning_parameters:
       batch_size:
         default_value: 32
+      # LR reduction proporsionally to the batch size decrease (because gpu_num=1)
       learning_rate:
-        default_value: 0.05
+        default_value: 0.0125
       learning_rate_warmup_iters:
         default_value: 1200
       num_iters:
