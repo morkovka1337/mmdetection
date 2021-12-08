@@ -50,7 +50,7 @@ model = dict(
         score_thr=0.25,
         nms=dict(type='nms', iou_threshold=0.5),
         max_per_img=100))
-evaluation = dict(interval=1, metric='mAP')
+evaluation = dict(interval=1, metric=['bbox', 'f1'], score_thr=0.25)
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = 'data/text-dataset/'
@@ -140,11 +140,11 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=25)
+total_epochs = 25
 device_ids = range(4)
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = 'output'
-load_from = 'https://download.01.org/opencv/openvino_training_extensions/models/object_detection/v2/horizontal-text-detection-0001.pth'
+work_dir = 'outputs/horizontal-text-detection'
+load_from = None
 resume_from = None
 workflow = [('train', 1)]

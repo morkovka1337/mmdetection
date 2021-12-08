@@ -237,7 +237,7 @@ data = dict(
         img_prefix='data/val2017',
         test_mode=True,
         pipeline=test_pipeline))
-evaluation = dict(interval=1, metric='mAP')
+evaluation = dict(interval=1, metric='bbox')
 optimizer = dict(type='SGD', lr=0.02, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 lr_config = dict(
@@ -251,11 +251,11 @@ log_config = dict(
     interval=50,
     hooks=[dict(type='TextLoggerHook'),
            dict(type='TensorboardLoggerHook')])
-runner = dict(type='EpochBasedRunner', max_epochs=12)
+total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = 'output'
-load_from = 'https://download.01.org/opencv/openvino_training_extensions/models/object_detection/v3/vehicle-detection-0203.pth'
+work_dir = './cascade_r50'
+load_from = None
 resume_from = None
 workflow = [('train', 1)]
 gpu_ids = range(0, 1)

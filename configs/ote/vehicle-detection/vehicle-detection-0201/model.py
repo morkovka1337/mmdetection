@@ -150,10 +150,10 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-runner = dict(type='EpochBasedRunner', max_epochs=20)
+total_epochs = 20
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = 'output'
-load_from = 'https://download.01.org/opencv/openvino_training_extensions/models/object_detection/v2/vehicle-detection-0201-1.pth'
+work_dir = 'outputs/vehicle-detection-0201'
+load_from = None
 resume_from = None
 workflow = [('train', 1)]
