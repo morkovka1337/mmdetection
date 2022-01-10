@@ -92,9 +92,9 @@ class OTEDataset(CustomDataset):
         forwards data access operations to ote_dataset and converts the dataset items to the view
         convenient for mmdetection.
         """
-        def __init__(self, ote_dataset, classes):
+        def __init__(self, ote_dataset, labels):
             self.ote_dataset = ote_dataset
-            self.CLASSES = classes
+            self.labels = labels
 
         def __len__(self):
             return len(self.ote_dataset)

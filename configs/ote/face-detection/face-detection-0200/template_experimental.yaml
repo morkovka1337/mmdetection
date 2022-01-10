@@ -5,8 +5,7 @@ task_type: DETECTION
 task_family: VISION
 instantiation: "CLASS"
 summary: Face Detection based on MobileNetV2 (SSD).
-application:
-  ~
+application: Face detection
 
 # Algo backend.
 framework: OTEDetection v2.9.1
@@ -24,7 +23,7 @@ hyper_parameters:
     learning_parameters:
       batch_size:
         default_value: 65
-      # LR reduction proporsionally to the batch size decrease (because gpu_num=1)
+      # LR reduction proportionally to the batch size decrease (because gpu_num=1)
       learning_rate:
         default_value: 0.025
       learning_rate_warmup_iters:
