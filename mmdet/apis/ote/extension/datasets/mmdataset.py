@@ -16,7 +16,8 @@ from copy import deepcopy
 from typing import List
 
 import numpy as np
-from ote_sdk.entities.annotation import AnnotationSceneEntity, AnnotationSceneKind, Annotation
+from ote_sdk.entities.annotation import AnnotationSceneEntity, AnnotationSceneKind, Annotation,\
+    NullAnnotationSceneEntity
 from ote_sdk.entities.dataset_item import DatasetItemEntity
 from ote_sdk.entities.datasets import DatasetEntity
 from ote_sdk.entities.label import Domain, LabelEntity
@@ -217,7 +218,9 @@ class OTEDataset(CustomDataset):
                 filtered_anns.append(ann)
         if len(filtered_anns) == 0:
             print(f'All instances on the image are smaller than min_size={self.min_size} - the image was skipped')
+            annotations = NullAnnotationSceneEntity()
+        else:
+            annotations = AnnotationSceneEntity(annotations=filtered_anns, kind=AnnotationSceneKind.ANNOTATION)
 
-        dataset_item.annotation_scene.annotations = filtered_anns
-        item['dataset_item'] = dataset_item
+        item['dataset_item'] = DatasetItemEntity(media=dataset_item.media, annotation_scene=annotations)
         return item
